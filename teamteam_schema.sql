@@ -54,6 +54,7 @@ CREATE TABLE Tip ( -- done
 	y_tip_text VARCHAR,
 	y_user_id CHAR(33),
 	y_business_id CHAR(33),
+	y_like_count INTEGER DEFAULT 0,
 	PRIMARY KEY (y_user_id, y_business_id, y_date),
 	FOREIGN KEY (y_user_id) REFERENCES Users(y_user_id),
 	FOREIGN KEY (y_business_id) REFERENCES Business(y_business_id)

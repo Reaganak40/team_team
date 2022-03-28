@@ -126,11 +126,11 @@ def insert2CheckinTable():
                             (data['business_id'], date) )              
                 except Exception as e:
                     print("Insert to Check_In table failed!",e)
-                conn.commit()
-                # optionally you might write the INSERT statement to a file.
-                # sql_str = ("INSERT INTO businessTable (business_id, name, address, state, city, zipcode, latitude, longitude, stars, numCheckins, numTips, is_open)"
-                #           + " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', {6}, {7}, {8}, {9}, {10}, {11})").format(data['business_id'],cleanStr4SQL(data["name"]), cleanStr4SQL(data["address"]), data["state"], data["city"], data["postal_code"], data["latitude"], data["longitude"], data["stars"], 0 , 0 , [False,True][data["is_open"]] )            
-                # outfile.write(sql_str+'\n')
+            conn.commit()
+            # optionally you might write the INSERT statement to a file.
+            # sql_str = ("INSERT INTO businessTable (business_id, name, address, state, city, zipcode, latitude, longitude, stars, numCheckins, numTips, is_open)"
+            #           + " VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', {6}, {7}, {8}, {9}, {10}, {11})").format(data['business_id'],cleanStr4SQL(data["name"]), cleanStr4SQL(data["address"]), data["state"], data["city"], data["postal_code"], data["latitude"], data["longitude"], data["stars"], 0 , 0 , [False,True][data["is_open"]] )            
+            # outfile.write(sql_str+'\n')
 
             line = f.readline()
             count_line_check_in +=1
@@ -163,9 +163,9 @@ def insert2TipTable():
             # TODO: The below INSERT statement is based on a simple (and incomplete) businesstable schema. Update the statement based on your own table schema and
             # include values for all businessTable attributes
             try:
-                cur.execute("INSERT INTO Tip (y_date, y_tip_text, y_user_id, y_business_id)"
-                       + " VALUES (%s, %s, %s, %s)", 
-                         (data['date'], data["text"], data["user_id"], data["business_id"]) )              
+                cur.execute("INSERT INTO Tip (y_date, y_tip_text, y_user_id, y_business_id, y_like_count)"
+                       + " VALUES (%s, %s, %s, %s, %s)", 
+                         (data['date'], data["text"], data["user_id"], data["business_id"], data["likes"]) )              
             except Exception as e:
                 print("Insert to Tip table failed!", e)
             conn.commit()
