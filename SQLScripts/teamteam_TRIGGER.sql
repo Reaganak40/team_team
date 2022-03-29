@@ -6,6 +6,9 @@ BEGIN
    UPDATE Users
    SET y_tip_count = y_tip_count + 1
    WHERE Users.y_user_id = NEW.y_user_id;
+   UPDATE Business
+   SET y_tip_count = y_tip_count + 1
+   WHERE Business.y_business_id = NEW.y_business_id;
    RETURN NEW;
 END
 ' LANGUAGE plpgsql; 
@@ -34,5 +37,5 @@ WHEN (NEW.y_business_id IS NOT NULL)
 EXECUTE PROCEDURE UpdateCheckInCount();
 
 -- TEST TRIGGERS
-SELECT y_user_id, y_tip_count
-FROM Users;
+--SELECT y_user_id, y_tip_count
+--FROM Users;
