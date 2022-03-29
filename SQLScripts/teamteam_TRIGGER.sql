@@ -37,5 +37,32 @@ WHEN (NEW.y_business_id IS NOT NULL)
 EXECUTE PROCEDURE UpdateCheckInCount();
 
 -- TEST TRIGGERS
---SELECT y_user_id, y_tip_count
---FROM Users;
+SELECT y_business_id, y_tip_count
+FROM Business
+WHERE y_business_id = '5KheTjYPu1HcQzQFtm4_vw';
+
+SELECT y_user_id, y_tip_count
+FROM Users
+WHERE y_user_id = 'jRyO2V1pA4CdVVqCIOPc1Q';
+
+INSERT INTO Tip (y_date, y_tip_text, y_user_id, y_business_id, y_like_count)
+VALUES ('2010-11-23 16:19:50', 'New Tip to test trigger!', 'jRyO2V1pA4CdVVqCIOPc1Q', '5KheTjYPu1HcQzQFtm4_vw', 4);
+
+SELECT y_business_id, y_tip_count
+FROM Business
+WHERE y_business_id = '5KheTjYPu1HcQzQFtm4_vw';
+
+SELECT y_user_id, y_tip_count
+FROM Users
+WHERE y_user_id = 'jRyO2V1pA4CdVVqCIOPc1Q';
+
+SELECT y_business_id, y_checkin_count
+FROM Business
+WHERE y_business_id = '5KheTjYPu1HcQzQFtm4_vw';
+
+INSERT INTO Check_In (y_business_id, y_check_in_time)
+VALUES ('5KheTjYPu1HcQzQFtm4_vw', '2010-11-23 16:19:55');
+
+SELECT y_business_id, y_checkin_count
+FROM Business
+WHERE y_business_id = '5KheTjYPu1HcQzQFtm4_vw';
